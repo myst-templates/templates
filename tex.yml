@@ -1,0 +1,50 @@
+kind: tex
+templates:
+  - organization: myst
+    name: agu2019
+    source: https://github.com/myst-templates/agu2019
+    latest: main
+  - organization: myst
+    name: arxiv_nips
+    source: https://github.com/myst-templates/arxiv_nips
+    latest: main
+  - organization: myst
+    name: arxiv_two_column
+    source: https://github.com/myst-templates/arxiv_two_column
+    latest: main
+  - organization: myst
+    name: eartharxiv
+    source: https://github.com/myst-templates/eartharxiv
+    latest: main
+  - organization: myst
+    name: frontiers
+    source: https://github.com/myst-templates/frontiers
+    latest: main
+  - organization: myst
+    name: physiome
+    source: https://github.com/myst-templates/physiome
+    latest: main
+  - organization: myst
+    name: spie_proceedings
+    source: https://github.com/myst-templates/spie_proceedings
+    latest: main
+  - organization: myst
+    name: volcanica
+    source: https://github.com/myst-templates/volcanica
+    latest: main
+  - organization: myst
+    name: curvenote
+    source: https://github.com/myst-templates/curvenote
+    latest: main
+  - organization: myst
+    name: egu_copernicus
+    source: https://github.com/myst-templates/egu_copernicus
+    latest: main
+  - organization: myst
+    name: mdpi
+    source: https://github.com/myst-templates/mdpi
+    latest: main
+  - organization: myst
+    name: plain_latex
+    source: https://github.com/myst-templates/plain_latex
+    latest: main
