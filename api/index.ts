@@ -10,7 +10,6 @@ import {
   thumbnailUrl,
 } from './utils';
 import texTempaltes from './data/tex.json';
-import { info } from 'console';
 
 const TEMPLATES = {
   tex: texTempaltes,

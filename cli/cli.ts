@@ -14,7 +14,7 @@ import { validateTemplateIndex } from './validators';
 import { createValidatorOpts, loadFileAsYaml } from './utils';
 import { TemplateItem } from './types';
 
-function clean(session: ISession) {
+function cleanBuild(session: ISession) {
   const repoPath = '_build';
   if (!fs.existsSync(repoPath)) return;
   session.log.info(`Removing ${repoPath}`);
@@ -49,9 +49,12 @@ async function parseTemplateItem(session: ISession, kind: string, templateItem: 
   return template;
 }
 
+async function clean(session: ISession) {
+  cleanBuild(session);
+  cleanData(session);
+}
 async function parseTemplateIndex(session: ISession, file: string) {
   clean(session);
-  cleanData(session);
   const index = await validateTemplateIndex(session, file);
   if (!index) return;
   const templates = await Promise.all(
@@ -63,14 +66,22 @@ async function parseTemplateIndex(session: ISession, file: string) {
   writeFileToFolder(join('api', 'data', `${index.kind}.json`), JSON.stringify(templates));
 }
 
-function makeValidateCLI(program: Command) {
-  const command = new Command('validate')
+function makeCleanCLI(program: Command) {
+  const command = new Command('clean')
+    .description('Clean the build folder and built data folder in the API')
+    .action(clirun(clean, { program, getSession }));
+  return command;
+}
+
+function makeDataCLI(program: Command) {
+  const command = new Command('index')
     .description('Load and validate all templates in an index file.')
     .argument('<path>', 'A file to the template index to check')
     .action(clirun(parseTemplateIndex, { program, getSession }));
   return command;
 }
 
-export function addValidateCLI(program: Command) {
-  program.addCommand(makeValidateCLI(program));
+export function addCLI(program: Command) {
+  program.addCommand(makeCleanCLI(program));
+  program.addCommand(makeDataCLI(program));
 }
