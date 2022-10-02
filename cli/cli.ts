@@ -55,12 +55,22 @@ async function clean(session: ISession) {
 }
 
 function writeReadme(
+  session: ISession,
   templates: {
     info: TemplateItem;
     template: TemplateYml;
   }[],
 ) {
   const path = join('readme', 'profile', 'README.md');
+  if (!fs.existsSync(path)) {
+    session.log.error(
+      `The path "${path}" does not exist and cannot update the organization README.`,
+    );
+    session.log.info(
+      `Try "git clone git@github.com:myst-templates/.github.git readme" to create the relevant folder`,
+    );
+    return;
+  }
   const readme = fs.readFileSync(path).toString();
   let insert = false;
   const out: string[] = [];
@@ -118,7 +128,7 @@ async function parseTemplateIndex(session: ISession, file: string) {
     }),
   );
   writeFileToFolder(join('api', 'data', `${index.kind}.json`), JSON.stringify(templates));
-  writeReadme(templates);
+  writeReadme(session, templates);
 }
 
 function makeCleanCLI(program: Command) {
