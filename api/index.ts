@@ -9,10 +9,10 @@ import {
   downloadUrl,
   thumbnailUrl,
 } from './utils';
-import texTempaltes from './data/tex.json';
+import texTemplates from './data/tex.json';
 
 const TEMPLATES = {
-  tex: texTempaltes,
+  tex: texTemplates,
 };
 
 const app = express();

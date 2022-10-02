@@ -1,7 +1,7 @@
 import fs from 'fs';
 import { join } from 'path';
 import { Command } from 'commander';
-import { validateTemplateYml } from 'jtex';
+import { TemplateYml, validateTemplateYml } from 'jtex';
 import {
   clirun,
   getSession,
@@ -53,6 +53,60 @@ async function clean(session: ISession) {
   cleanBuild(session);
   cleanData(session);
 }
+
+function writeReadme(
+  templates: {
+    info: TemplateItem;
+    template: TemplateYml;
+  }[],
+) {
+  const path = join('readme', 'profile', 'README.md');
+  const readme = fs.readFileSync(path).toString();
+  let insert = false;
+  const out: string[] = [];
+  readme.split('\n').forEach((line) => {
+    if (insert) {
+      if (line.startsWith('#')) {
+        // Turn the line back on when hiting the header.
+        insert = false;
+        out.push(line);
+      }
+      return;
+    }
+    if (line === '## LaTeX Templates') {
+      insert = true;
+      out.push(line);
+      out.push('');
+      const table = [
+        ['Title (`id`)', 'Repository', 'CI'],
+        [':---', ':---', ':---'],
+      ];
+      templates.forEach(({ info, template }) => {
+        table.push([
+          `${template.title ?? ''} (\`${info.name}\`)`,
+          `[${info.name}](${info.source})`,
+          `[![](${info.source}/actions/workflows/jtex.yml/badge.svg)](${info.source}/actions/workflows/jtex.yml)`,
+        ]);
+      });
+      const sizes = table.reduce(
+        (l, s) => [0, 1, 2].map((i) => Math.max(l[i], s[i].length)),
+        [0, 0, 0],
+      );
+      const md = table
+        .map((row, ri) =>
+          row.map((cell, i) => cell.padEnd(sizes[i], ri === 1 ? '-' : ' ')).join(' | '),
+        )
+        .map((row) => `| ${row} |`)
+        .join('\n');
+      out.push(md);
+      out.push('');
+    } else {
+      out.push(line);
+    }
+  });
+  fs.writeFileSync(path, out.join('\n'));
+}
+
 async function parseTemplateIndex(session: ISession, file: string) {
   clean(session);
   const index = await validateTemplateIndex(session, file);
@@ -64,6 +118,7 @@ async function parseTemplateIndex(session: ISession, file: string) {
     }),
   );
   writeFileToFolder(join('api', 'data', `${index.kind}.json`), JSON.stringify(templates));
+  writeReadme(templates);
 }
 
 function makeCleanCLI(program: Command) {

@@ -10,10 +10,22 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+        with:
+          repository: myst-templates/.github
+          path: readme
+          token: ${{ secrets.PAT }}
       - run: npm install
       - run: npm run build:cli
       - run: npm run link
-      - name: Clone and index all tempaltes
+      - name: Clone and index all templates
         run: myst-templates index data/tex.yml
       - run: vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Update organization readme
+        run: |
+          cd readme
+          git config --local user.name 'myst-templates[bot]'
+          git config --local user.email 'myst-templates[bot]@users.noreply.github.com'
+          git commit profile/README.md -m '📖 Update templates table' || echo "🧹 No changes!"
+          git push origin || echo "🧹 No changes!"

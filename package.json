@@ -1,7 +1,7 @@
 {
   "name": "myst-templates-api",
   "private": true,
-  "description": "API for browsing and downloading MyST tempaltes",
+  "description": "API for browsing and downloading MyST templates",
   "author": "Rowan Cockett <rowan@curvenote.com>",
   "homepage": "https://github.com/myst-templates",
   "license": "MIT",

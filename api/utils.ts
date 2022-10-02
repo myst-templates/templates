@@ -28,7 +28,7 @@ function getGithubParts(url: string): undefined | GitHubParts {
   return { org, repo };
 }
 
-// https://github.com/myst-templates/tempaltes/archive/refs/heads/main.zip
+// https://github.com/myst-templates/templates/archive/refs/heads/main.zip
 export function downloadUrl(source: string, ref: string, isTag = false) {
   const parts = getGithubParts(source);
   if (!parts) return source;
