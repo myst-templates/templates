@@ -9,10 +9,12 @@ import {
   downloadUrl,
   thumbnailUrl,
 } from './utils';
+import docxTemplates from './data/docx.json';
 import texTemplates from './data/tex.json';
 
 const TEMPLATES = {
   tex: texTemplates,
+  docx: docxTemplates,
 };
 
 const app = express();
@@ -35,6 +37,7 @@ app.get('/templates', (req: Request, res: Response) => {
     version,
     links: {
       tex: asUrl('/templates/tex'),
+      docx: asUrl('/templates/docx'),
     },
   };
   sendData(res, data);
