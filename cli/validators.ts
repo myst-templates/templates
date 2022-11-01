@@ -3,7 +3,7 @@ import { ISession } from 'myst-cli-utils';
 import {
   incrementOptions,
   validateString,
-  validateChoice,
+  validateEnum,
   validateList,
   validateObjectKeys,
   ValidationOptions,
@@ -12,7 +12,7 @@ import {
   validationError,
 } from 'simple-validators';
 import { createValidatorOpts, loadFileAsYaml } from './utils';
-import { TemplateIndex, TemplateItem, templateKinds } from './types';
+import { TemplateIndex, TemplateItem, TemplateKinds } from './types';
 
 async function validateTemplateItem(
   session: ISession,
@@ -58,9 +58,9 @@ export async function validateTemplateIndex(
   const opts = createValidatorOpts(session, file);
   const value = validateObjectKeys(indexYaml, { required: ['kind', 'templates'] }, opts);
   if (!value) return;
-  const kind = validateChoice(value.kind, {
+  const kind = validateEnum<TemplateKinds>(value.kind, {
     ...incrementOptions('kind', opts),
-    choices: templateKinds,
+    enum: TemplateKinds,
   });
   const templates = (
     await Promise.all(

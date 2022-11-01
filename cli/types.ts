@@ -1,5 +1,7 @@
-export type TemplateKinds = 'tex';
-export const templateKinds: TemplateKinds[] = ['tex'];
+export enum TemplateKinds {
+  tex = 'tex',
+  docx = 'docx',
+}
 
 export type TemplateItem = {
   organization: string;
