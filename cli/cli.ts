@@ -117,18 +117,24 @@ function writeReadme(
   fs.writeFileSync(path, out.join('\n'));
 }
 
-async function parseTemplateIndex(session: ISession, file: string) {
+async function parseTemplateIndex(session: ISession, files: string[]) {
   clean(session);
-  const index = await validateTemplateIndex(session, file);
-  if (!index) return;
-  const templates = await Promise.all(
-    index.templates.map(async (info) => {
-      const template = await parseTemplateItem(session, index.kind, info);
-      return { info, template };
+  const allTemplates: { info: TemplateItem; template: TemplateYml }[] = [];
+  await Promise.all(
+    files.map(async (file) => {
+      const index = await validateTemplateIndex(session, file);
+      if (!index) return;
+      const templates = await Promise.all(
+        index.templates.map(async (info) => {
+          const template = await parseTemplateItem(session, index.kind, info);
+          return { info, template };
+        }),
+      );
+      writeFileToFolder(join('api', 'data', `${index.kind}.json`), JSON.stringify(templates));
+      allTemplates.push(...templates);
     }),
   );
-  writeFileToFolder(join('api', 'data', `${index.kind}.json`), JSON.stringify(templates));
-  writeReadme(session, templates);
+  writeReadme(session, allTemplates);
 }
 
 function makeCleanCLI(program: Command) {
@@ -141,7 +147,7 @@ function makeCleanCLI(program: Command) {
 function makeDataCLI(program: Command) {
   const command = new Command('index')
     .description('Load and validate all templates in an index file.')
-    .argument('<path>', 'A file to the template index to check')
+    .argument('<paths...>', 'Files for the template index to check')
     .action(clirun(parseTemplateIndex, { program, getSession }));
   return command;
 }
