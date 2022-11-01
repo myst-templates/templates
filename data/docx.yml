@@ -1,0 +1,6 @@
+kind: docx
+templates:
+  - organization: myst
+    name: default
+    source: https://github.com/myst-templates/docx_default
+    latest: main
