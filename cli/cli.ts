@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { join } from 'path';
+import { basename, extname, join } from 'path';
 import { Command } from 'commander';
 import { TemplateYml, validateTemplateYml } from 'jtex';
 import {
@@ -12,7 +12,7 @@ import {
 } from 'myst-cli-utils';
 import { validateTemplateIndex } from './validators';
 import { createValidatorOpts, loadFileAsYaml } from './utils';
-import { TemplateItem } from './types';
+import { TemplateItem, TemplateKinds } from './types';
 
 function cleanBuild(session: ISession) {
   const repoPath = '_build';
@@ -59,6 +59,7 @@ function writeReadme(
   templates: {
     info: TemplateItem;
     template: TemplateYml;
+    kind: TemplateKinds;
   }[],
 ) {
   const path = join('readme', 'profile', 'README.md');
@@ -83,24 +84,25 @@ function writeReadme(
       }
       return;
     }
-    if (line === '## LaTeX Templates') {
+    if (line === '## Templates') {
       insert = true;
       out.push(line);
       out.push('');
       const table = [
-        ['Title (`id`)', 'Repository', 'CI'],
-        [':---', ':---', ':---'],
+        ['Title (`id`)', 'Kind', 'Repository', 'CI'],
+        [':---', ':---', ':---', ':---'],
       ];
-      templates.forEach(({ info, template }) => {
+      templates.forEach(({ info, template, kind }) => {
         table.push([
           `${template.title ?? ''} (\`${info.name}\`)`,
+          kind,
           `[${info.name}](${info.source})`,
           `[![](${info.source}/actions/workflows/jtex.yml/badge.svg)](${info.source}/actions/workflows/jtex.yml)`,
         ]);
       });
       const sizes = table.reduce(
-        (l, s) => [0, 1, 2].map((i) => Math.max(l[i], s[i].length)),
-        [0, 0, 0],
+        (l, s) => [0, 1, 2, 3].map((i) => Math.max(l[i], s[i].length)),
+        [0, 0, 0, 0],
       );
       const md = table
         .map((row, ri) =>
@@ -119,7 +121,7 @@ function writeReadme(
 
 async function parseTemplateIndex(session: ISession, files: string[]) {
   clean(session);
-  const allTemplates: { info: TemplateItem; template: TemplateYml }[] = [];
+  const allTemplates: { info: TemplateItem; template: TemplateYml; kind: TemplateKinds }[] = [];
   await Promise.all(
     files.map(async (file) => {
       const index = await validateTemplateIndex(session, file);
@@ -127,7 +129,7 @@ async function parseTemplateIndex(session: ISession, files: string[]) {
       const templates = await Promise.all(
         index.templates.map(async (info) => {
           const template = await parseTemplateItem(session, index.kind, info);
-          return { info, template };
+          return { info, template, kind: basename(file, extname(file)) as TemplateKinds };
         }),
       );
       writeFileToFolder(join('api', 'data', `${index.kind}.json`), JSON.stringify(templates));
