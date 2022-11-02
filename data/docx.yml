@@ -4,3 +4,7 @@ templates:
     name: default
     source: https://github.com/myst-templates/docx_default
     latest: main
+  - organization: myst
+    name: curvenote
+    source: https://github.com/myst-templates/curvenote_docx
+    latest: main
