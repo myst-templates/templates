@@ -1,4 +1,4 @@
-import type { TemplateKind, TemplateDTO } from 'myst-templates';
+import { TemplateKind, TemplateYmlListResponse } from 'myst-templates';
 import { Response } from 'express';
 
 export const version = 'v1';
@@ -29,9 +29,11 @@ function getGithubParts(url: string): undefined | GitHubParts {
 }
 
 // https://github.com/myst-templates/templates/archive/refs/heads/main.zip
-export function downloadUrl(source: string, ref: string, isTag = false) {
+export function downloadUrl(kind: TemplateKind, source: string, ref: string, isTag = false) {
   const parts = getGithubParts(source);
   if (!parts) return source;
+  // Return git url for site templates - these are cloned.
+  if (kind === TemplateKind.site) return `https://github.com/${parts.org}/${parts.repo}.git`;
   const refType = isTag ? 'tags' : 'heads';
   return `https://github.com/${parts.org}/${parts.repo}/archive/refs/${refType}/${ref}.zip`;
 }
@@ -48,7 +50,7 @@ export function templateSummary(
   kind: TemplateKind,
   info: Record<string, any>,
   template: Record<string, any>,
-): TemplateDTO {
+): TemplateYmlListResponse['items'][0] {
   const id = `${kind}/${info.organization}/${info.name}`;
   return {
     id,
@@ -63,7 +65,7 @@ export function templateSummary(
       self: asUrl(`/templates/${id}`),
       source: info.source,
       thumbnail: thumbnailUrl(info.source, template.thumbnail, info.latest),
-      download: downloadUrl(info.source, info.latest),
+      download: downloadUrl(kind, info.source, info.latest),
     },
   };
 }
