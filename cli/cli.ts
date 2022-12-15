@@ -1,7 +1,7 @@
 import fs from 'fs';
 import { basename, extname, join } from 'path';
 import { Command } from 'commander';
-import { TemplateYml, validateTemplateYml } from 'jtex';
+import { TemplateYml, validateTemplateYml } from 'myst-templates';
 import {
   clirun,
   getSession,

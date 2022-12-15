@@ -1,6 +1,7 @@
 export enum TemplateKinds {
   tex = 'tex',
   docx = 'docx',
+  site = 'site',
 }
 
 export type TemplateItem = {

@@ -1,0 +1,6 @@
+kind: site
+templates:
+  - organization: myst
+    name: book-theme
+    source: https://github.com/curvenote/book-theme
+    latest: main

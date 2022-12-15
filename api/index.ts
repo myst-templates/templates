@@ -11,10 +11,12 @@ import {
 } from './utils';
 import docxTemplates from './data/docx.json';
 import texTemplates from './data/tex.json';
+import siteTemplates from './data/site.json';
 
 const TEMPLATES = {
   tex: texTemplates,
   docx: docxTemplates,
+  site: siteTemplates,
 };
 
 const app = express();
@@ -38,6 +40,7 @@ app.get('/templates', (req: Request, res: Response) => {
     links: {
       tex: asUrl('/templates/tex'),
       docx: asUrl('/templates/docx'),
+      site: asUrl('/templates/site'),
     },
   };
   sendData(res, data);
@@ -73,7 +76,7 @@ app.get('/templates/:kind/:organization/:name', (req: Request, res: Response) =>
       self: asUrl(req.url),
       source: data.info.source,
       thumbnail: thumbnailUrl(data.info.source, thumbnail, data.info.latest),
-      download: downloadUrl(data.info.source, data.info.latest),
+      download: downloadUrl(kind as any, data.info.source, data.info.latest),
       original: source,
     },
   });
