@@ -48,3 +48,7 @@ templates:
     name: plain_latex
     source: https://github.com/myst-templates/plain_latex
     latest: main
+  - organization: myst
+    name: lapreprint
+    source: https://github.com/myst-templates/lapreprint
+    latest: main
