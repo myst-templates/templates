@@ -2,5 +2,5 @@ kind: site
 templates:
   - organization: myst
     name: book-theme
-    source: https://github.com/curvenote/book-theme
+    source: https://github.com/executablebooks/myst-book-theme
     latest: main
