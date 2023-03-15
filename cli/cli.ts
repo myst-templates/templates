@@ -2,6 +2,7 @@ import fs from 'fs';
 import { basename, extname, join } from 'path';
 import { Command } from 'commander';
 import { TemplateYml, validateTemplateYml } from 'myst-templates';
+import { TemplateKind } from 'myst-common';
 import {
   clirun,
   getSession,
@@ -12,7 +13,7 @@ import {
 } from 'myst-cli-utils';
 import { validateTemplateIndex } from './validators';
 import { createValidatorOpts, loadFileAsYaml } from './utils';
-import { TemplateItem, TemplateKinds } from './types';
+import { TemplateItem } from './types';
 
 function cleanBuild(session: ISession) {
   const repoPath = '_build';
@@ -22,7 +23,7 @@ function cleanBuild(session: ISession) {
 }
 
 function cleanData(session: ISession) {
-  const repoPath = join('api', 'data');
+  const repoPath = join('src', 'data');
   if (!fs.existsSync(repoPath)) return;
   session.log.info(`Removing ${repoPath}`);
   fs.rmSync(repoPath, { recursive: true, force: true });
@@ -59,7 +60,7 @@ function writeReadme(
   templates: {
     info: TemplateItem;
     template: TemplateYml;
-    kind: TemplateKinds;
+    kind: TemplateKind;
   }[],
 ) {
   const path = join('readme', 'profile', 'README.md');
@@ -121,7 +122,7 @@ function writeReadme(
 
 async function parseTemplateIndex(session: ISession, files: string[]) {
   clean(session);
-  const allTemplates: { info: TemplateItem; template: TemplateYml; kind: TemplateKinds }[] = [];
+  const allTemplates: { info: TemplateItem; template: TemplateYml; kind: TemplateKind }[] = [];
   await Promise.all(
     files.map(async (file) => {
       const index = await validateTemplateIndex(session, file);
@@ -129,10 +130,10 @@ async function parseTemplateIndex(session: ISession, files: string[]) {
       const templates = await Promise.all(
         index.templates.map(async (info) => {
           const template = await parseTemplateItem(session, index.kind, info);
-          return { info, template, kind: basename(file, extname(file)) as TemplateKinds };
+          return { info, template, kind: basename(file, extname(file)) as TemplateKind };
         }),
       );
-      writeFileToFolder(join('api', 'data', `${index.kind}.json`), JSON.stringify(templates));
+      writeFileToFolder(join('src', 'data', `${index.kind}.json`), JSON.stringify(templates));
       allTemplates.push(...templates);
     }),
   );

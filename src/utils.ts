@@ -1,9 +1,10 @@
-import { TemplateKind, TemplateYmlListResponse } from 'myst-templates';
-import { Response } from 'express';
+import type { TemplateYmlListResponse } from 'myst-templates';
+import type { Response } from 'express';
 
 export const version = 'v1';
+
 const BASE_URL =
-  process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://api.myst.tools';
+  process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://api.myst-tools.org';
 
 export function asUrl(url: string) {
   return `${BASE_URL}${url}`;
@@ -29,11 +30,11 @@ function getGithubParts(url: string): undefined | GitHubParts {
 }
 
 // https://github.com/myst-templates/templates/archive/refs/heads/main.zip
-export function downloadUrl(kind: TemplateKind, source: string, ref: string, isTag = false) {
+export function downloadUrl(kind: string, source: string, ref: string, isTag = false) {
   const parts = getGithubParts(source);
   if (!parts) return source;
   // Return git url for site templates - these are cloned.
-  if (kind === TemplateKind.site) return `https://github.com/${parts.org}/${parts.repo}.git`;
+  if (kind === 'site') return `https://github.com/${parts.org}/${parts.repo}.git`;
   const refType = isTag ? 'tags' : 'heads';
   return `https://github.com/${parts.org}/${parts.repo}/archive/refs/${refType}/${ref}.zip`;
 }
@@ -47,14 +48,14 @@ export function thumbnailUrl(source: string, thumbnail: string, ref: string) {
 }
 
 export function templateSummary(
-  kind: TemplateKind,
+  kind: string,
   info: Record<string, any>,
   template: Record<string, any>,
 ): TemplateYmlListResponse['items'][0] {
   const id = `${kind}/${info.organization}/${info.name}`;
   return {
     id,
-    kind,
+    kind: kind as any,
     title: template.title ?? '',
     description: template.description ?? '',
     authors: template.authors,

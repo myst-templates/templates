@@ -1,5 +1,6 @@
 node_modules
 .vercel
-api/data
+api
+src/data
 dist
 _build

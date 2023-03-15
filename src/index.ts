@@ -1,5 +1,4 @@
-import express, { Request, Response } from 'express';
-import { TemplateKind } from 'myst-templates';
+import express from 'express';
 import {
   version,
   sendData,
@@ -12,29 +11,31 @@ import {
 import docxTemplates from './data/docx.json';
 import texTemplates from './data/tex.json';
 import siteTemplates from './data/site.json';
+import { TemplateItem } from '../cli/types';
+import { TemplateYml } from 'myst-templates';
 
 const TEMPLATES = {
   tex: texTemplates,
   docx: docxTemplates,
   site: siteTemplates,
-};
+} as Record<string, { info: TemplateItem; template: TemplateYml; kind: string }[]>;
 
 const app = express();
 app.disable('x-powered-by');
 
-app.get('/', (req: Request, res: Response) => {
+app.get('/', (req, res) => {
   const data = {
     version,
     message: '👋 Welcome to the MyST API 👋',
     links: {
       templates: asUrl('/templates'),
-      docs: 'https://myst.tools',
+      docs: 'https://myst-tools.org',
     },
   };
   sendData(res, data);
 });
 
-app.get('/templates', (req: Request, res: Response) => {
+app.get('/templates', (req, res) => {
   const data = {
     version,
     links: {
@@ -46,19 +47,19 @@ app.get('/templates', (req: Request, res: Response) => {
   sendData(res, data);
 });
 
-app.get('/templates/:kind', (req: Request, res: Response) => {
+app.get('/templates/:kind', (req, res) => {
   const { kind } = req.params;
   if (!TEMPLATES[kind]) return send404(res);
   const data = {
     version,
     items: TEMPLATES[kind].map(({ info, template }) =>
-      templateSummary(kind as TemplateKind, info, template),
+      templateSummary(kind as string, info, template),
     ),
   };
   sendData(res, data);
 });
 
-app.get('/templates/:kind/:organization/:name', (req: Request, res: Response) => {
+app.get('/templates/:kind/:organization/:name', (req, res) => {
   const { kind, organization, name } = req.params;
   if (!TEMPLATES[kind]) return send404(res);
   const data = TEMPLATES[kind].find(
@@ -75,7 +76,9 @@ app.get('/templates/:kind/:organization/:name', (req: Request, res: Response) =>
     links: {
       self: asUrl(req.url),
       source: data.info.source,
-      thumbnail: thumbnailUrl(data.info.source, thumbnail, data.info.latest),
+      thumbnail: thumbnail
+        ? thumbnailUrl(data.info.source, thumbnail, data.info.latest)
+        : undefined,
       download: downloadUrl(kind as any, data.info.source, data.info.latest),
       original: source,
     },
