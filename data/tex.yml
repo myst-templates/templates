@@ -52,3 +52,7 @@ templates:
     name: lapreprint
     source: https://github.com/myst-templates/lapreprint
     latest: main
+  - organization: myst
+    name: isprs
+    source: https://github.com/myst-templates/isprs
+    latest: main

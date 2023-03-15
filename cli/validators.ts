@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
 import { ISession } from 'myst-cli-utils';
+import { TemplateKind } from 'myst-common';
 import {
   incrementOptions,
   validateString,
@@ -12,7 +13,7 @@ import {
   validationError,
 } from 'simple-validators';
 import { createValidatorOpts, loadFileAsYaml } from './utils';
-import { TemplateIndex, TemplateItem, TemplateKinds } from './types';
+import { TemplateIndex, TemplateItem } from './types';
 
 async function validateTemplateItem(
   session: ISession,
@@ -58,9 +59,9 @@ export async function validateTemplateIndex(
   const opts = createValidatorOpts(session, file);
   const value = validateObjectKeys(indexYaml, { required: ['kind', 'templates'] }, opts);
   if (!value) return;
-  const kind = validateEnum<TemplateKinds>(value.kind, {
+  const kind = validateEnum<TemplateKind>(value.kind, {
     ...incrementOptions('kind', opts),
-    enum: TemplateKinds,
+    enum: TemplateKind,
   });
   const templates = (
     await Promise.all(

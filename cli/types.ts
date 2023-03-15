@@ -1,8 +1,4 @@
-export enum TemplateKinds {
-  tex = 'tex',
-  docx = 'docx',
-  site = 'site',
-}
+import { TemplateKind } from 'myst-common';
 
 export type TemplateItem = {
   organization: string;
@@ -11,7 +7,8 @@ export type TemplateItem = {
   latest: string;
   versions?: string[];
 };
+
 export type TemplateIndex = {
-  kind: TemplateKinds;
+  kind: TemplateKind;
   templates: TemplateItem[];
 };

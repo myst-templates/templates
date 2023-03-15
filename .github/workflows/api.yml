@@ -21,6 +21,7 @@ jobs:
       - run: npm run link
       - name: Clone and index templates
         run: myst-templates index data/tex.yml data/docx.yml data/site.yml
+      - run: npm run build
       - run: vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
       - name: Update organization readme
         run: |
