@@ -1,6 +1,6 @@
 # MyST Templates
 
-A community curated collection of [MyST Markdown](https://myst.tools) compatible templates.
+A community curated collection of [MyST Markdown](https://myst-tools.org) compatible templates.
 These templates allow `myst` to export markdown files as typeset, formatted documents using PDF, LaTeX or Word.
 Templates can expose data-driven options for customization ensuring the final documents comply with author submission guidelines provided by a particular journal, conference organizer or university.
 
@@ -8,7 +8,7 @@ This repository:
 
 - holds issues for new and general information for improving existing templates
 - downloads each template listed in the [data](./data) folder
-- deploys an API to https://api.myst.tools
+- deploys an API to https://api.myst-tools.org
 - automatically updates the organization readme
 
 ## Contributing a LaTeX Template
