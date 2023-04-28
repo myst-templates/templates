@@ -2,5 +2,9 @@ kind: site
 templates:
   - organization: myst
     name: book-theme
-    source: https://github.com/executablebooks/myst-book-theme
+    source: https://github.com/myst-templates/book-theme
+    latest: main
+  - organization: myst
+    name: article-theme
+    source: https://github.com/myst-templates/article-theme
     latest: main
