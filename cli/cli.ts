@@ -45,7 +45,10 @@ async function parseTemplateItem(session: ISession, kind: string, templateItem: 
   const templateFile = join(path, 'template.yml');
   const templateYaml = loadFileAsYaml(templateFile);
   const opts = createValidatorOpts(session, templateFile, 'template');
-  const template = validateTemplateYml(templateYaml, { ...opts, templateDir: path });
+  const template = validateTemplateYml(session as any, templateYaml, {
+    ...opts,
+    templateDir: path,
+  });
   if (!template) throw new Error(`The template: ${templateFile} is not valid`);
   return template;
 }
