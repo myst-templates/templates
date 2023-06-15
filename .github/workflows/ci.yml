@@ -41,4 +41,8 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: 'npm'
       - run: npm install
+      - run: npm run build:cli
+      - run: npm run link
+      - name: Clone and index templates
+        run: myst-templates-api index data/tex.yml data/docx.yml data/site.yml
       - run: npm run test
