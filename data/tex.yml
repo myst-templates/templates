@@ -56,3 +56,7 @@ templates:
     name: isprs
     source: https://github.com/myst-templates/isprs
     latest: main
+  - organization: myst
+    name: cageo
+    source: https://github.com/myst-templates/cageo
+    latest: main
