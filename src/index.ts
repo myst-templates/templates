@@ -11,8 +11,8 @@ import {
 import docxTemplates from './data/docx.json';
 import texTemplates from './data/tex.json';
 import siteTemplates from './data/site.json';
-import { TemplateItem } from '../cli/types';
-import { TemplateYml } from 'myst-templates';
+import type { TemplateItem } from '../cli/types';
+import type { TemplateYml } from 'myst-templates';
 
 const TEMPLATES = {
   tex: texTemplates,
@@ -85,6 +85,7 @@ app.get('/templates/:kind/:organization/:name', (req, res) => {
   });
 });
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.use((req, res, next) => {
   send404(res);
 });
