@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
     message: '👋 Welcome to the MyST API 👋',
     links: {
       templates: asUrl('/templates'),
-      docs: 'https://myst-tools.org',
+      docs: 'https://mystmd.org',
     },
   };
   sendData(res, data);
