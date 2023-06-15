@@ -23,11 +23,13 @@ templates:
     latest: main
 ```
 
-Install the mini CLI tool using `npm install` and `npm run dev` (puts this in watch mode, so you can kill after the output is complete).
-Then call `myst-templates index data/tex.yml` from the main folder, which will create an index file and update the organization readme.
-
 ## Contributing a Docx Template
 
 Docx templating currently requires a dynamic rendering function using [docx](https://docx.js.org/#/) passed directly to `mystjs`.
 However, data-driven options specified by a `template.yml` are still passed to this renderer.
 These may be added at [docx.yml](./data/docx.yml), similar to LaTeX templates.
+
+## Development
+
+Install the mini CLI tool using `npm install` and `npm run dev` (puts this in watch mode, so you can kill after the output is complete).
+Then call `myst-templates-api index data/tex.yml` from the main folder, which will create an index file and update the organization Readme.
