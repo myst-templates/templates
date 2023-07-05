@@ -4,7 +4,7 @@ import type { Response } from 'express';
 export const version = 'v1';
 
 const BASE_URL =
-  process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://api.myst-tools.org';
+  process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://api.mystmd.org';
 
 export function asUrl(url: string) {
   return `${BASE_URL}${url}`;
