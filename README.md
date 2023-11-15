@@ -13,7 +13,7 @@ This repository:
 
 ## Contributing a LaTeX Template
 
-To add a new LaTeX template checkout [tex.yml](./data/tex.yml), the template should be added as:
+To add a new LaTeX template, [fork this repo](https://github.com/myst-templates/templates/fork), and modify [tex.yml](./data/tex.yml), the new template should be added as a new entry in the listing:
 
 ```yaml
 templates:
@@ -23,11 +23,14 @@ templates:
     latest: main
 ```
 
+Once you've made your change, open a PR.
+
 ## Contributing a Docx Template
 
 Docx templating currently requires a dynamic rendering function using [docx](https://docx.js.org/#/) passed directly to `mystjs`.
-However, data-driven options specified by a `template.yml` are still passed to this renderer.
-These may be added at [docx.yml](./data/docx.yml), similar to LaTeX templates.
+However, data-driven options specified by a `template.yml` are still passed to this renderer. These may be added at [docx.yml](./data/docx.yml), similar to LaTeX template.
+
+[Fork this repo](https://github.com/myst-templates/templates/fork), make your change and open a PR.
 
 ## Development
 
