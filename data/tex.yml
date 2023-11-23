@@ -60,9 +60,9 @@ templates:
     name: isprs
     source: https://github.com/myst-templates/isprs
     latest: main
-  - organization: dressedfez
+  - organization: myst
     name: physical_review_journals
-    source: https://github.com/dressedfez/myst_template_physical_review_journals
+    source: https://github.com/myst-templates/physical_review_journals
     latest: main
   - organization: myst
     name: cageo
