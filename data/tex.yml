@@ -49,6 +49,10 @@ templates:
     source: https://github.com/myst-templates/plain_latex
     latest: main
   - organization: myst
+    name: plain_latex_book
+    source: https://github.com/myst-templates/plain_latex_book
+    latest: main
+  - organization: myst
     name: lapreprint
     source: https://github.com/myst-templates/lapreprint
     latest: main
@@ -59,7 +63,7 @@ templates:
   - organization: dressedfez
     name: physical_review_journals
     source: https://github.com/dressedfez/myst_template_physical_review_journals
-    latest: main    
+    latest: main
   - organization: myst
     name: cageo
     source: https://github.com/myst-templates/cageo
