@@ -68,7 +68,7 @@ templates:
     name: cageo
     source: https://github.com/myst-templates/cageo
     latest: main
-  - organization: dressedfez
+  - organization: myst
     name: springer
     source: https://github.com/myst-templates/springer
     latest: main 
