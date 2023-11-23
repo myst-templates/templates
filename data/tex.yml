@@ -70,5 +70,5 @@ templates:
     latest: main
   - organization: dressedfez
     name: springer
-    source: https://github.com/dressedfez/springer
+    source: https://github.com/myst-templates/springer
     latest: main 
