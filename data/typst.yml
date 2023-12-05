@@ -1,0 +1,6 @@
+kind: typst
+templates:
+  - organization: myst
+    name: ieee-typst
+    source: https://github.com/myst-templates/ieee-typst-template
+    latest: main
