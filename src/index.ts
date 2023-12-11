@@ -10,12 +10,14 @@ import {
 } from './utils';
 import docxTemplates from './data/docx.json';
 import texTemplates from './data/tex.json';
+import typstTemplates from './data/typst.json';
 import siteTemplates from './data/site.json';
 import type { TemplateItem } from '../cli/types';
 import type { TemplateYml } from 'myst-templates';
 
 const TEMPLATES = {
   tex: texTemplates,
+  typst: typstTemplates,
   docx: docxTemplates,
   site: siteTemplates,
 } as Record<string, { info: TemplateItem; template: TemplateYml; kind: string }[]>;
@@ -40,6 +42,7 @@ app.get('/templates', (req, res) => {
     version,
     links: {
       tex: asUrl('/templates/tex'),
+      typst: asUrl('/templates/typst'),
       docx: asUrl('/templates/docx'),
       site: asUrl('/templates/site'),
     },

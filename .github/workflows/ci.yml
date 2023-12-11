@@ -42,5 +42,5 @@ jobs:
       - run: npm run build:cli
       - run: npm run link
       - name: Clone and index templates
-        run: myst-templates-api index data/tex.yml data/docx.yml data/site.yml
+        run: myst-templates-api index data/tex.yml data/docx.yml data/site.yml data/typst.yml
       - run: npm run test
