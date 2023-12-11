@@ -34,10 +34,10 @@
     "express": "^4.18.2",
     "js-yaml": "^4.1.0",
     "myst-cli-utils": "^2.0.6",
-    "myst-common": "^1.1.13",
-    "myst-templates": "^1.0.12",
+    "myst-common": "^1.1.20",
+    "myst-templates": "^1.0.14",
     "node-fetch": "^3.3.1",
-    "simple-validators": "^1.0.3",
+    "simple-validators": "^1.0.4",
     "unist-util-remove": "^3.1.1",
     "unist-util-select": "^4.0.3",
     "vercel": "^30.2.2"
