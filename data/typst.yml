@@ -4,3 +4,7 @@ templates:
     name: ieee-typst
     source: https://github.com/myst-templates/ieee-typst-template
     latest: main
+  - organization: myst
+    name: lapreprint-typst
+    source: https://github.com/myst-templates/lapreprint-typst
+    latest: main
