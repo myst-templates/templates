@@ -8,3 +8,7 @@ templates:
     name: article-theme
     source: https://github.com/myst-templates/article-theme
     latest: main
+  - organization: curvenote
+    name: curvenote-landing
+    source: https://github.com/myst-templates/curvenote-landing
+    latest: main
