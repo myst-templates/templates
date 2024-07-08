@@ -10,5 +10,5 @@ templates:
     latest: main
   - organization: curvenote
     name: curvenote-landing
-    source: https://github.com/myst-templates/curvenote-landing
+    source: https://github.com/curvenote-themes/landing
     latest: main
