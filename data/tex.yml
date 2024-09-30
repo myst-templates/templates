@@ -72,3 +72,7 @@ templates:
     name: springer
     source: https://github.com/myst-templates/springer
     latest: main 
+  - organization: alcrene
+    name: pnas_research_report
+    source: https://github.com/alcrene/myst-template-pnas2023
+    latest: main
