@@ -27,7 +27,7 @@ Once you've made your change, open a PR.
 
 ## Contributing a Docx Template
 
-Docx templating currently requires a dynamic rendering function using [docx](https://docx.js.org/#/) passed directly to `mystjs`.
+Docx templating currently requires a dynamic rendering function using [docx](https://docx.js.org/#/) passed directly to `mystmd`.
 However, data-driven options specified by a `template.yml` are still passed to this renderer. These may be added at [docx.yml](./data/docx.yml), similar to LaTeX template.
 
 [Fork this repo](https://github.com/myst-templates/templates/fork), make your change and open a PR.
