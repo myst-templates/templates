@@ -1,7 +1,7 @@
 # MyST Templates
 
 A community curated collection of [MyST Markdown](https://mystmd.org) compatible templates.
-These templates allow `myst` to export markdown files as typeset, formatted documents using PDF, LaTeX or Word.
+These templates allow `myst` to export markdown files as typeset, formatted documents using PDF, LaTeX, Typst, or Word.
 Templates can expose data-driven options for customization ensuring the final documents comply with author submission guidelines provided by a particular journal, conference organizer or university.
 
 This repository:
