@@ -8,3 +8,7 @@ templates:
     name: lapreprint-typst
     source: https://github.com/myst-templates/lapreprint-typst
     latest: main
+  - organization: LaPreprint
+    name: lepub-typst
+    source: https://github.com/lapreprint/lepub/myst
+    latest: main
