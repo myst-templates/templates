@@ -11,7 +11,7 @@ This repository:
 - deploys an API to https://api.mystmd.org
 - automatically updates the organization readme
 
-## Contributing a LaTeX Template
+## Contributing a LaTeX or Typst Template
 
 To add a new LaTeX template, [fork this repo](https://github.com/myst-templates/templates/fork), and modify [tex.yml](./data/tex.yml), the new template should be added as a new entry in the listing:
 
