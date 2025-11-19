@@ -36,3 +36,35 @@ However, data-driven options specified by a `template.yml` are still passed to t
 
 Install the mini CLI tool using `npm install` and `npm run dev` (puts this in watch mode, so you can kill after the output is complete).
 Then call `myst-templates-api index data/tex.yml` from the main folder, which will create an index file and update the organization Readme.
+
+Source locations:
+
+- `./cli`: CLI for generating JSON data files from `data/x.yml` and template clone.
+- `./src`: Server for JSON data files.
+
+## Local deployment
+
+0. `npm install`
+
+1. `git clone git@github.com:myst-templates/.github.git readme`
+
+The tool wants to populate a README with a list of templates. Provide
+it with an example.
+
+2. `npm run build`
+
+- Build CLI into `./dist`.
+- Build API server into `./api`.
+
+2. `node dist/myst-templates-api.cjs index data/*.yml`
+
+Combine JSON data files in `data/*.yml` with template information,
+obtained from cloned template repos.
+
+3. `npm run copy:data`
+
+Copy JSON data into `src/data`.
+
+4. `node server.js`
+
+Serve data on `https://localhost:10000`.
