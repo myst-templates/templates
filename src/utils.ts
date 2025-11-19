@@ -42,7 +42,7 @@ export function downloadUrl(kind: string, source: string, ref: string, isTag = f
 // https://raw.githubusercontent.com/myst-templates/arxiv_nips/main/thumbnail.png
 export function thumbnailUrl(source: string, thumbnail: string, ref: string) {
   // Thumbnail wasn't specified; nothing we can do
-  if (!thumbnail) return null;
+  if (!thumbnail) return '';
 
   const parts = getGithubParts(source);
 
