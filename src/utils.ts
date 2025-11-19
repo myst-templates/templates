@@ -41,8 +41,15 @@ export function downloadUrl(kind: string, source: string, ref: string, isTag = f
 
 // https://raw.githubusercontent.com/myst-templates/arxiv_nips/main/thumbnail.png
 export function thumbnailUrl(source: string, thumbnail: string, ref: string) {
+  // Thumbnail wasn't specified; nothing we can do
+  if (!thumbnail) return null;
+
   const parts = getGithubParts(source);
+
+  // If we don't have a GitHub source URL, then the thumbnail has to be absolute; return as-is
   if (!parts) return thumbnail;
+
+  // GitHub source and thumbnail path provided; assume thumbnail path is relative
   const relative = thumbnail.replace(/^\.?\//, '');
   return `https://raw.githubusercontent.com/${parts.org}/${parts.repo}/${ref}/${relative}`;
 }
