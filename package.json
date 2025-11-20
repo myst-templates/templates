@@ -19,7 +19,7 @@
     "dev": "npm run link && esbuild cli/index.ts --bundle --outfile=dist/myst-templates-api.cjs --platform=node --watch",
     "build:cli": "esbuild cli/index.ts --bundle --outfile=dist/myst-templates-api.cjs --platform=node",
     "build:api": "esbuild src/index.ts src/utils.ts --outdir=api --platform=node --format=cjs",
-    "copy:data": "mkdir api && mkdir api/data && copyfiles -f src/data/*.json api/data",
+    "copy:data": "mkdir -p api/data && copyfiles -f src/data/*.json api/data",
     "build": "npm-run-all -l clean copy:data -p build:cli build:api",
     "compile": "tsc --noEmit",
     "test": "npm run compile",
