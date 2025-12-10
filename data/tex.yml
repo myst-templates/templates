@@ -72,3 +72,7 @@ templates:
     name: springer
     source: https://github.com/myst-templates/springer
     latest: main 
+  - organization: rtbs
+    name: wileynjd
+    source: https://github.com/rtbs-dev/wileynjd-myst
+    latest: main
