@@ -12,3 +12,7 @@ templates:
     name: plain_typst_book
     source: https://github.com/myst-templates/plain_typst_book
     latest: main
+  - organization: stefanv
+    name: letterloom-typst
+    source: https://github.com/stefanv/myst-typst-letterloom
+    latest: main
