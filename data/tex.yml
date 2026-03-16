@@ -71,4 +71,8 @@ templates:
   - organization: myst
     name: springer
     source: https://github.com/myst-templates/springer
-    latest: main 
+    latest: main
+  - organization: econ-ark
+    name: elsarticle-myst
+    source: https://github.com/econ-ark/elsarticle-myst
+    latest: main
