@@ -72,3 +72,7 @@ templates:
     name: springer
     source: https://github.com/myst-templates/springer
     latest: main 
+  - organization: alcrene
+    name: preprint+
+    source: https://github.com/alcrene/myst-preprint-plus
+    latest: main
