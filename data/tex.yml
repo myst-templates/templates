@@ -72,3 +72,6 @@ templates:
     name: springer
     source: https://github.com/myst-templates/springer
     latest: main 
+  - organization: myst
+    name: astronomy and astrophysics
+    source: https://github.com/mfouesneau/myst-template-aa
