@@ -61,6 +61,10 @@ templates:
     source: https://github.com/myst-templates/isprs
     latest: main
   - organization: myst
+    name: optica_journals
+    source: https://github.com/ssenhorst/optica_journals
+    latest: main
+  - organization: myst
     name: physical_review_journals
     source: https://github.com/myst-templates/physical_review_journals
     latest: main
@@ -71,4 +75,4 @@ templates:
   - organization: myst
     name: springer
     source: https://github.com/myst-templates/springer
-    latest: main 
+    latest: main
