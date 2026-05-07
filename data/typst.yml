@@ -16,3 +16,7 @@ templates:
     name: letterloom-typst
     source: https://github.com/stefanv/myst-typst-letterloom
     latest: main
+  - organization: freekpols
+    name: thesis-typst
+    source: https://github.com/TUD-JB-OS/typst_template
+    latest: main
