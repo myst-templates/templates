@@ -16,3 +16,7 @@ templates:
     name: letterloom-typst
     source: https://github.com/stefanv/myst-typst-letterloom
     latest: main
+  - organization: NitraxMathematicalKeyboard
+    name: stem-lecture-notes
+    source: https://github.com/NitraxMathematicalKeyboard/stem-lecture-notes-myst
+    latest: main
