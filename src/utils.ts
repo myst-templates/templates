@@ -17,6 +17,8 @@ export function send404(res: Response) {
 export function sendData(res: Response, data: Record<string, any>) {
   res.setHeader('Content-Type', 'application/json');
   res.setHeader('Cache-Control', 's-max-age=1000, stale-while-revalidate');
+  res.setHeader('CDN-Cache-Control', 'max-age=3600');
+  res.setHeader('Vercel-CDN-Cache-Control', 'max-age=3600');
   res.json(data);
 }
 
