@@ -29,6 +29,10 @@ templates:
     source: https://github.com/myst-templates/spie_proceedings
     latest: main
   - organization: myst
+    name: tudelft_dissertation
+    source: https://github.com/ssenhorst/tudelft_dissertation
+    latest: main
+  - organization: myst
     name: volcanica
     source: https://github.com/myst-templates/volcanica
     latest: main
